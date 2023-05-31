@@ -15,7 +15,7 @@ pipeline {
     stages {
         stage('BUILD') {
             steps {
-                sh 'mvn install -DskipTests'
+                sh 'mvn clean install -DskipTests'
             }
             post {
                 success {
@@ -97,7 +97,7 @@ pipeline {
         }
 
         stage('Kubernetes Deploy') {
-            agent { label 'KOPS' }
+            agent { label 'KUBESNODE' }
             steps {
                 sh "helm upgrade --install --force vprofile-stack helm/vprofilecharts --set appimage=${registry}:${BUILD_NUMBER} --namespace prod"
             }
