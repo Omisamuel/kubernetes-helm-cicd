@@ -8,7 +8,7 @@ pipeline {
 
     environment {
         registry = "omisamkube/kubernetes-helm-cicd"
-        registryCredential = "dockerhub"
+        registryCredential = "docker-token"
 
     }
 
